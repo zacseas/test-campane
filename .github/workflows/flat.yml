@@ -8,15 +8,14 @@ jobs:
   scheduled:
     runs-on: ubuntu-latest
     
-    # Questa sezione dice a GitHub di forzare l'uso di Node 24 
-    # e di non lamentarsi se le azioni sono "vecchie"
     env:
+      # Scegliamo SOLO questa: forziamo l'ambiente a Node 24.
+      # GitHub smetterà di segnalare l'errore di configurazione.
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 
     steps:
       - name: Check out repo
-        uses: actions/checkout@v4 # La v4 è quella corretta
+        uses: actions/checkout@v4
         
       - name: Fetch data
         uses: githubocto/flat@v3
