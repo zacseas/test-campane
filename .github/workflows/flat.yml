@@ -7,13 +7,16 @@ on:
 jobs:
   scheduled:
     runs-on: ubuntu-latest
+    
+    # Questa sezione dice a GitHub di forzare l'uso di Node 24 
+    # e di non lamentarsi se le azioni sono "vecchie"
     env:
-      # Questa variabile conferma a GitHub che accettiamo l'esecuzione su Node 24
-      # eliminando i warning di deprecazione fino al passaggio definitivo.
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
     steps:
       - name: Check out repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 # La v4 è quella corretta
         
       - name: Fetch data
         uses: githubocto/flat@v3
