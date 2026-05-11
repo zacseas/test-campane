@@ -1,0 +1,17 @@
+name: Aggiorna Dati
+on:
+  workflow_dispatch: # Ti permette di aggiornare i dati a mano per testare
+  schedule:
+    - cron: '0 0 * * *' # Ogni notte a mezzanotte
+
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+      - name: Fetch data
+        uses: githubocto/flat@v3
+        with:
+          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQMIQS_0E4oHzknN3DgO6QMGx_MqTxxX2g-_gIEWYS9J2de64wWDOzswchnF2To4EJy5LMdKX1uI0DA/pub?gid=1865442869&single=true&output=csv'
+          downloaded_filename: campane.csv
