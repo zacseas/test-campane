@@ -4,16 +4,16 @@ on:
   schedule:
     - cron: '0 0 * * *' 
 
-# Forza l'uso di Node.js 24 per compatibilità con i nuovi runner 2026
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   scheduled:
     runs-on: ubuntu-latest
+    env:
+      # Questa variabile conferma a GitHub che accettiamo l'esecuzione su Node 24
+      # eliminando i warning di deprecazione fino al passaggio definitivo.
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
     steps:
       - name: Check out repo
-        uses: actions/checkout@v4 # Versione aggiornata
+        uses: actions/checkout@v4
         
       - name: Fetch data
         uses: githubocto/flat@v3
